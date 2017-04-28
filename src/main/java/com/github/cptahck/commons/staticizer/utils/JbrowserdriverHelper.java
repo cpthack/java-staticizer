@@ -44,7 +44,7 @@ public class JbrowserdriverHelper {
 	@SuppressWarnings("static-access")
 	public static JBrowserDriver getBrowserDriver(LinkedHashMap<String, String> requestHeaders) {
 		JBrowserDriver driver = null;
-		Settings settings = Settings.builder().timezone(Timezone.AMERICA_NEWYORK).build();
+		Settings settings = Settings.builder().logWarnings(false).timezone(Timezone.AMERICA_NEWYORK).build();
 		if (null == requestHeaders) {
 			settings = settings.builder().requestHeaders(new RequestHeaders(requestHeaders)).build();
 		}

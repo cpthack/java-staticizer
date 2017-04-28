@@ -44,11 +44,12 @@ public class StaticizerTest {
 		StaticizerClient client = StaticizerClientFactory.getClient();
 		logger.info("获取StaticizerClient操作对象>>>" + client);
 		
+		HtmlPage htmlPage = null;
 		for (int i = 1; i < 1000; i++) {
 			
 			logger.debug("准备静态化第[" + i + "]个文件.");
 			
-			HtmlPage htmlPage = client.getMobilePageSource(url);
+			htmlPage = client.getMobilePageSource(url);
 			logger.info("请求目标地址并获取HtmlPage对象");
 			
 			logger.info("请求[" + url + "]后返回的状态，statusCode = [" + htmlPage.getStatusCode() + "]");
