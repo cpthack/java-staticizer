@@ -41,7 +41,7 @@ public class JBrowserDriverStaticizer implements StaticizerClient {
 	
 	@Override
 	public HtmlPage getPageSource(String url) {
-		return getPageSource(url);
+		return getPageSource(url, null);
 	}
 	
 	@Override
