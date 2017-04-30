@@ -22,7 +22,7 @@ import com.github.cptahck.commons.staticizer.exception.AssertHelper;
 import com.machinepublishers.jbrowserdriver.JBrowserDriver;
 import com.machinepublishers.jbrowserdriver.RequestHeaders;
 import com.machinepublishers.jbrowserdriver.Settings;
-import com.machinepublishers.jbrowserdriver.Timezone;
+import com.machinepublishers.jbrowserdriver.UserAgent;
 
 /**
  * <b>JbrowserdriverHelper.java</b></br>
@@ -41,14 +41,26 @@ public class JbrowserdriverHelper {
 		return getBrowserDriver(StaticizerConstants.MOBILE_REQUEST_HEADERS);
 	}
 	
-	@SuppressWarnings("static-access")
 	public static JBrowserDriver getBrowserDriver(LinkedHashMap<String, String> requestHeaders) {
 		JBrowserDriver driver = null;
-		Settings settings = Settings.builder().blockAds(true).connectionReqTimeout(10).javascript(false).ajaxResourceTimeout(10).logWarnings(false).timezone(Timezone.AMERICA_NEWYORK).build();
+		Settings.Builder builder = Settings.builder().processes(100)// 设置当前运行的JBrowserDriver实例数量
+		        .blockAds(true)// 阻止对广告/垃圾邮件服务器的请求
+		        .quickRender(true)// 从渲染中排除网页图像和二进制数据，加快渲染速度
+		        .loggerLevel(null)// 关闭所有日志输出，提高性能
+		        .hostnameVerification(false)// 关于域名验证，提高性能
+		        .cache(true)// 开启缓存，类似真实浏览器的缓存功能
+		        .cacheEntries(10 * 10000)// 设置缓存数量
+		        .cacheEntrySize(20 * 1024 * 1024)// 设置缓存大小 20M
+		        .maxRouteConnections(20)// 最大并发连接（number of per process）to a specific主机+代理的组合
+		        .maxConnections(20)// 并发连接的最大数目（每个进程）
+		// .userAgent(UserAgent.CHROME)
+		;
+		
 		if (requestHeaders != null) {
-			settings = settings.builder().requestHeaders(new RequestHeaders(requestHeaders)).build();
+			builder = builder.requestHeaders(new RequestHeaders(requestHeaders));
 		}
-		driver = new JBrowserDriver(settings);
+		
+		driver = new JBrowserDriver(builder.build());
 		AssertHelper.notNull(driver, "初始化JBrowserDriver失败.");
 		return driver;
 	}

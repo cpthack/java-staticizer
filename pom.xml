@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>com.machinepublishers</groupId>
 			<artifactId>jbrowserdriver</artifactId>
-			<version>0.16.1</version>
+			<version>0.17.7</version>
 		</dependency>
 		<!-- jBrowserDriver相关依赖包 end -->
 

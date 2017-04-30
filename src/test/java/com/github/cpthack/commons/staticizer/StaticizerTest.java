@@ -40,7 +40,7 @@ public class StaticizerTest {
 	
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
-		String url = "http://guangzhou.jianzhimao.com";// 待静态化的目标地址
+		String url = "https://www.jianzhimao.com/ctrlindex/enterprise.html";// 待静态化的目标地址
 		String baseSavePath = "/Users/cptahck/workspace/jianzhimao/java-staticizer/src/test/resources/static-file/";// 静态化文件保存地址
 		
 		StaticizerClient client = StaticizerClientFactory.getClient();
@@ -50,7 +50,7 @@ public class StaticizerTest {
 		for (int i = 1; i < 2; i++) {
 			
 			logger.debug("准备静态化第[" + i + "]个文件.");
-			for (int j = 0; j < 100; j++) {
+			for (int j = 0; j < 1; j++) {
 				htmlPage = client.getPageSource(url);
 				logger.info("请求目标地址并获取HtmlPage对象：" + j);
 				logger.info("请求[" + url + "]后返回的状态，statusCode = [" + htmlPage.getStatusCode() + "]");
