@@ -48,4 +48,5 @@ htmlPage = client.getPageSource(url, requestHeaders);
 
 ## 具体参考：
 
-测试类[StaticizerTest.java](https://github.com/cpthack/java-staticizer/blob/master/src/test/java/com/github/cpthack/commons/staticizer/StaticizerTest.java)
+- 简单测试类参考：[StaticizerTest.java](https://github.com/cpthack/java-staticizer/blob/master/src/test/java/com/github/cpthack/commons/staticizer/StaticizerTest.java)
+- spring实现参考：[spring boot实现](https://github.com/cpthack/spring-staticizer-service)
